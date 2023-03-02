@@ -1,7 +1,7 @@
 import pandas as pd
 from otlang.sdk.syntax import Keyword, Positional, OTLType
 from pp_exec_env.base_command import BaseCommand, Syntax
-from ts_forecasting import distr
+from .distr import generate, DISTRIBUTIONS
 
 PARAMETERS = {
     'pert': ['a', 'b', 'c'],
@@ -81,7 +81,7 @@ class GenDistrCommand(BaseCommand):
 
         # Check distribution name
         distr_name = self.get_arg('distr_name').value
-        if distr_name not in distr.DISTRIBUTIONS:
+        if distr_name not in DISTRIBUTIONS:
             raise ValueError(
                 f'Unsupported distribution. Known distribution are: {", ".join(distr.DISTRIBUTIONS.keys())}')
 
@@ -98,7 +98,7 @@ class GenDistrCommand(BaseCommand):
                 raise ValueError(f'Missing param for {distr_name} distribution: {param_name}')
             params[param_name] = param_val
 
-        result_df = distr.generate(name=distr_name, size=size, **params)
+        result_df = generate(name=distr_name, size=size, **params)
 
         if to_file:
             result_df.to_parquet(to_file)

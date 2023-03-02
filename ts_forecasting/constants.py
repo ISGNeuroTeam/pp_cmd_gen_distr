@@ -1,1 +1,0 @@
-DT_INDEX_NAME = 'dt'
