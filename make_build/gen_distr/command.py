@@ -68,7 +68,7 @@ class GenDistrCommand(BaseCommand):
             # Pareto parameters
             Keyword("theta", required=False, otl_type=OTLType.NUMERIC),
 
-            # Discrete parameter
+            # Discrete paramemeter
             Keyword("values", required=False, otl_type=OTLType.TEXT),
             Keyword("probabilities", required=False, otl_type=OTLType.TEXT),
         ],
@@ -83,7 +83,7 @@ class GenDistrCommand(BaseCommand):
         distr_name = self.get_arg('distr_name').value
         if distr_name not in DISTRIBUTIONS:
             raise ValueError(
-                f'Unsupported distribution. Known distribution are: {", ".join(DISTRIBUTIONS.keys())}')
+                f'Unsupported distribution. Known distribution are: {", ".join(distr.DISTRIBUTIONS.keys())}')
 
         # Check size
         size = self.get_arg('size').value or 1
