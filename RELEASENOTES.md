@@ -1,4 +1,4 @@
-## [0.1.0] - Added 12 distributions:
+## [0.1.0] - All 12 required distributions are now added to one postprocessing command:
 - pert
 - bernulli
 - binominal
