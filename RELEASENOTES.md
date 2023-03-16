@@ -1,0 +1,13 @@
+## [0.1.0] - Added 12 distributions:
+- pert
+- bernulli
+- binominal
+- normal
+- poisson
+- triangular
+- uniform
+- weibull
+- chisquare
+- beta
+- pareto
+- discrete
