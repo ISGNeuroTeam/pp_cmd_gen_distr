@@ -4,7 +4,7 @@ from pp_exec_env.base_command import BaseCommand, Syntax
 from .distr import generate, DISTRIBUTIONS
 
 PARAMETERS = {
-    'pert': ['a', 'b', 'c'],
+    'pert': ['min', 'moda', 'max'],
     'bernulli': ['p'],
     'binominal': ['n', 'p'],
     'normal': ['mean', 'deviation'],
@@ -28,9 +28,9 @@ class GenDistrCommand(BaseCommand):
             Keyword("to_file", required=False, otl_type=OTLType.TEXT),
 
             # PERT params:
-            Keyword("a", required=False, otl_type=OTLType.NUMERIC),
-            Keyword("b", required=False, otl_type=OTLType.NUMERIC),
-            Keyword("c", required=False, otl_type=OTLType.NUMERIC),
+            Keyword("min", required=False, otl_type=OTLType.NUMERIC),
+            Keyword("moda", required=False, otl_type=OTLType.NUMERIC),
+            Keyword("max", required=False, otl_type=OTLType.NUMERIC),
 
             # Bernulli parameter
             Keyword("p", required=False, otl_type=OTLType.NUMERIC),

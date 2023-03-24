@@ -3,16 +3,16 @@ from numpy.random import default_rng
 import pandas as pd
 
 
-def _pert(a, b, c, size=1, lamb=4):
-    if b <= a:
-        raise ValueError('Wrong params for PERT distribution: must be b > a')
-    if c <= b:
-        raise ValueError('Wrong params for PERT distribution: must be c > b')
+def _pert(min, moda, max, size=1, lamb=4):
+    if moda <= min:
+        raise ValueError('Wrong params for PERT distribution: must be moda > min')
+    if max <= moda:
+        raise ValueError('Wrong params for PERT distribution: must be max > moda')
 
-    r = c - a
-    alpha = 1 + lamb * (b - a) / r
-    beta = 1 + lamb * (c - b) / r
-    return a + np.random.beta(alpha, beta, size=size) * r
+    r = max - min
+    alpha = 1 + lamb * (moda - min) / r
+    beta = 1 + lamb * (max - moda) / r
+    return min + np.random.beta(alpha, beta, size=size) * r
 
 
 def _bernulli(p, size=1):

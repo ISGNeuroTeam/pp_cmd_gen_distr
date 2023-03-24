@@ -4,7 +4,7 @@ Postprocessing command "gen_distr"
 Usage example
 
 For PERT distribution:
-`... | gen_distr 'pert' a=10 b=50 c=110 size=20`
+`... | gen_distr 'pert' min=10 moda=50 max=110 size=20`
 
 For Bernulli distribution:
 `... | gen_distr 'bernulli' p=1.4 size=20` (0 <= p <= 1)
