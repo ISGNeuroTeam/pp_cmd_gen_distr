@@ -67,6 +67,7 @@ class GenDistrCommand(BaseCommand):
 
             # Pareto parameters
             Keyword("theta", required=False, otl_type=OTLType.NUMERIC),
+            Keyword("a", required=False, otl_type=OTLType.NUMERIC),
 
             # Discrete parameter
             Keyword("values", required=False, otl_type=OTLType.TEXT),
