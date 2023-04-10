@@ -1,3 +1,6 @@
+## [0.3.1] - added functionality to discrete distribution
+use `use_dataframe=yes` to read data from dataframe, read with readFile function.
+
 ## [0.2.1] - fixed PARETO distribution lacking input parameter
 `a` input numeric parameter was lacking due to previous renaming of the PERT parameters  
 
