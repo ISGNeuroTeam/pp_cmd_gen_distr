@@ -102,9 +102,13 @@ def _pareto(theta, a, size=1):
     return (rng.pareto(theta, size=size) + 1) * a
 
 
-def _discrete(values, probabilities, size=1):
-    values_list = [float(x) for x in values.split(';') if len(x) > 0]
-    probabilities_list = [float(x) for x in probabilities.split(';') if len(x) > 0]
+def _discrete(df, values, probabilities, use_dataframe: bool = False, size=1):
+    if use_dataframe:
+        values_list = [float(x) for x in df[values]]
+        probabilities_list = [float(x) for x in df[probabilities]]
+    else:
+        values_list = [float(x) for x in values.split(';') if len(x) > 0]
+        probabilities_list = [float(x) for x in probabilities.split(';') if len(x) > 0]
 
     if len(values_list) == 0:
         raise ValueError(f'Zero value elements found. Must be at least one')
@@ -133,6 +137,8 @@ DISTRIBUTIONS = {
 }
 
 
-def generate(name, size, **params):
+def generate(df, name, size, **params):
     fn = DISTRIBUTIONS[name]
+    if name == 'discrete':
+        return pd.DataFrame(_discrete(df=df, size=size, **params), columns=['value'])
     return pd.DataFrame(fn(size=size, **params), columns=['value'])

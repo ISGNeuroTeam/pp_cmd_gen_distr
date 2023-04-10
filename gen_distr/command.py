@@ -15,7 +15,7 @@ PARAMETERS = {
     'chisquare': ['df'],
     'beta': ['alpha1', 'alpha2'],
     'pareto': ['theta', 'a'],
-    'discrete': ['values', 'probabilities']
+    'discrete': ['use_dataframe', 'values', 'probabilities']
 }
 
 
@@ -70,6 +70,7 @@ class GenDistrCommand(BaseCommand):
             Keyword("a", required=False, otl_type=OTLType.NUMERIC),
 
             # Discrete parameter
+            Keyword("use_dataframe", required=False, otl_type=OTLType.BOOLEAN),
             Keyword("values", required=False, otl_type=OTLType.TEXT),
             Keyword("probabilities", required=False, otl_type=OTLType.TEXT),
         ],
@@ -78,8 +79,6 @@ class GenDistrCommand(BaseCommand):
     idempotent = True  # Does not invalidate cache
 
     def transform(self, df: pd.DataFrame) -> pd.DataFrame:
-        self.log_progress('Start gen_distr command')
-
         # Check distribution name
         distr_name = self.get_arg('distr_name').value
         if distr_name not in DISTRIBUTIONS:
@@ -96,10 +95,12 @@ class GenDistrCommand(BaseCommand):
         params = dict()
         for param_name in PARAMETERS[distr_name]:
             if (param_val := self.get_arg(param_name).value) is None:
+                if distr_name == ' discrete' and param_name == 'use_dataframe':
+                    continue
                 raise ValueError(f'Missing param for {distr_name} distribution: {param_name}')
             params[param_name] = param_val
 
-        result_df = generate(name=distr_name, size=size, **params)
+        result_df = generate(df=df, name=distr_name, size=size, **params)
 
         if to_file:
             result_df.to_parquet(to_file)
