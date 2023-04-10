@@ -10,7 +10,7 @@ all:
  pack - make output archive, file name format \"gen_distr_vX.Y.Z_BRANCHNAME.tar.gz\"\n\
 "
 
-VERSION := "0.0.1"
+VERSION := "0.3.1"
 BRANCH := $(shell git name-rev $$(git rev-parse HEAD) | cut -d\  -f2 | sed -re 's/^(remotes\/)?origin\///' | tr '/' '_')
 
 pack: make_build
