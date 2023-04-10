@@ -1,3 +1,8 @@
+## [0.3.1] - 2023-04-10
+### Added
+- added option to `discrete` distribution to read data from readFile dataframe and use columns' names as `values` 
+and `probabilities`
+
 ## [0.2.1] - 2023-03-24
 ### Fixed
 Lacking `a` input numeric parameter was added to input parameters so PARETO distribution would be generated  

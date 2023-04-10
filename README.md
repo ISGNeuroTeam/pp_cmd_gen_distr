@@ -37,7 +37,14 @@ For Pareto distribution:
 `... | gen_distr 'pareto' theta=10 a=15 size=20` (theta > 0, a > 0)
 
 For Discrete distribution:
-`... | gen_distr 'discrete' values='1;2;3;4;5' probabilities='0.2;0.2;0.2;0.2;0.2' size=20` (amount of values and probabilities should be the same. All probabilities must sum up to 1.)
+`... | gen_distr 'discrete' values='1;2;3;4;5' probabilities='0.2;0.2;0.2;0.2;0.2' size=20` 
+(amount of values and probabilities should be the same. All probabilities must sum up to 1.)
+To use data from dataframe read in `readFile` function use `use_dataframe=yes` parameter.
+`... | readFile discrete.csv type=csv storage=examples | gen_distr 'discrete' use_dataframe=yes values='values' probabilities='probabilities' size=10`
+Put each value in each cell of a column. 
+Name of the column with data for values put in `values` parameter, name of the column with data for probabilities 
+put in `probabilities` parameter.
+
 
 ## Getting started
 ###  Prerequisites
